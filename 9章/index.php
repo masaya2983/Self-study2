@@ -1,4 +1,14 @@
-<?php $info = file_get_contents("info.txt") ?>
+<?php 
+$fp =fopen("info.txt","r");
+$line = array();
+$body = '';
+if ($fp){
+  while (!feof($fp)){
+    $line[]= fgets($fp);
+  }
+  fclose($fp);
+}
+?>
 <!doctype html>
 <html lang="ja"></html>
 
