@@ -9,5 +9,5 @@ break;
 case IMAGETYPE_PNG: $new_name.= '.png';
 break;
 defult: header('Location: upload.php');
-exit()
+exit();
 
