@@ -34,6 +34,6 @@ try{
   header('Location:bbs.php');
   exit();
 } catch(PDOException $e){
-  exit('エラー:'.$e->);
+  exit('エラー:'.$e->getMessage());
 }
 ?>
