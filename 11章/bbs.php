@@ -17,5 +17,57 @@
     <label>削除パスワード(数字４桁)</label>
     <input type="text" name= "pass" class="form-control">
   </div>
-  <input type ="submit" class="btn btn-primary" value="書き込む">
+  <?php
+$num = 10;
+
+$dsn = 'mysql:host=localhost;dbname=tennis;charset=utf8';
+$user = 'tenisuser = password';
+$password ='password';
+$page = 1;
+if (isset($_GET['page']) && $_get['page'] >1){
+  $page = intval($_GET['page']);
+}
+try{
+  $db = new PDO($dsn, $user,$password);
+  $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+  
+  $stmt = $db->prepare("SELECT * FROM bbs ORDER BY date DESC LIMIT :page, :num");
+  
+  $page = ($page-1) * $num;
+  $stmt>bindParam(':page', $page, PDD::PARAM_INT);
+  $stmt->bindParam(':num',$num, PDO::PARAM_INT);
+  $stmt->execute();
+}catch (PDOException $e){
+  exit("エラー:".$e->getMessage());
+}
+?>
+<!doctype html>
+<html lang="ja">
+  <input type="submit" class="btn btn-primary" value="書き込む">
 </form>
+<hr>
+
+<?php while($row = $stmt->fetch()): ?>
+<div class="card">
+ <div class="card-header"><?php echo $row['title']?>$row['title']:'(無題)';?></div> 
+ <div class="card-body">
+   <p class="card-text"><?php echo nl2br($row['body']) ?></p>
+ 
+ <div class="card-footer">
+   <?php echo $row['name']?>
+   <?php echo $row['date']?>
+  </div> 
+ </div>
+ <hr>
+ <?php endwhile; ?>
+ <?php
+ try{
+   $stmt = $db->prepare("SELECT COUNT(*) FORM bbs");
+   
+   $stmt->excute();
+   
+ } catch(PDOException ){
+   
+ }
+ ?>
+</html>
