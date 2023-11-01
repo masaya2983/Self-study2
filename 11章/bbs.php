@@ -66,8 +66,20 @@ try{
    
    $stmt->excute();
    
- } catch(PDOException ){
+ } catch(PDOException $e){
+   exit("エラー:".$e->getMessage());
    
+ }
+ $comments = $stmt->fetchColum();
+ 
+ $max_page = ceil($comments/$num);
+ 
+ if ($max_page >= 1){
+   echo '<nav><ul class="pagination">';
+   for ($i = 1; $i <= $max_page; $i++){
+     echo '<li class="page-item"><a href="bbs.php?page= '.$i.'">'.$i.'</a></li>';
+   }
+   echo '</ul></nav>';
  }
  ?>
 </html>
