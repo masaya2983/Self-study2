@@ -55,6 +55,12 @@ if(isset($_SESSION['id'])){
         border-bottom-right-radius:0;
         border-bottom-left-radius:0;
       }
+      #password {
+        margin-bottom:10px;
+        border-top-left-radius:0;
+        border-top-right-radius:0;
+      }
     </style>
   </head>
+  
 </html>
