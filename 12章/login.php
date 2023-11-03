@@ -62,5 +62,18 @@ if(isset($_SESSION['id'])){
       }
     </style>
   </head>
-  
+  <body>
+    <main role="main" class="container"style="padding:60px 15px 0">
+      <div>
+        <form action="login.php" method="post">
+          <h1>サークルサイト</h1>
+          <label class="sr-only">ユーザー名</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="ユーザー名">
+          <label class="sr-only">パスワード</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="パスワード">
+          <input type="submit" class="btn btn-primary btn-block" value="ログイン">
+        </form>
+      </div>
+    </main>
+  </body>
 </html>
