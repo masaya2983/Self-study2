@@ -19,6 +19,18 @@ if(isset($_SESSION['id'])){
     $stmt->bindParam(':name'$_POST['name'],PDO::PARAM_STR);
     $stmt->bindParam(':pass', hash("sha256",$_POST['password']),PDO::PARSMSTR);
     $stmt->execute();
-  }
+    
+    if ($row = $stmt->fetch()){
+      $_SESSION['id']= $row['id'];
+      header('Location: index.php');
+      exit();
+    } else {
+      
+      
+      
+      header('Location: login.php');
+      exit();
+    }
+  }catch ()
 }
 ?>
