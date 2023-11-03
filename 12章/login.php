@@ -31,6 +31,17 @@ if(isset($_SESSION['id'])){
       header('Location: login.php');
       exit();
     }
-  }catch ()
+  }catch (PDOException $e){
+    
+    exit('エラー:'.$e->getMessage);
+  }
 }
 ?>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>サークルサイト</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrap.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    
+  </head>
+</html>
