@@ -12,5 +12,11 @@ switch(exif_imagetype($_FILES['file']['tmp_name'])){
   imagecopyresampled($canvas,$image,0,0,0,0, $new_width,$new_height,$width,$height);
   imagejpeg($canvas, 'images/new_image.gif');
   break;
+  
+  case IMAGETYPE_GIF:
+    $image = imagecreatefromgif($_FILES['file']['tmp_name']);
+    imagecopyresampled($canvas, $image,0,0,0,0,$new_width,$new_height,$width,$height);
+    imagegif($canvas,images/new_image.gif);
+    break;
 }
 ?>
